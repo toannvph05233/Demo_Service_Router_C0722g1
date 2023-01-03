@@ -1,16 +1,19 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {CreateComponent} from "./product/create/create.component";
-import {ShowComponent} from "./product/show/show.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from "./login/login.component";
+
 
 const routes: Routes = [
-  { path: 'create', component: CreateComponent },
-  { path: 'show', component: ShowComponent},
-  { path: '', component: ShowComponent},
+  {
+    path: 'products',
+    loadChildren: () => import('../app/product/product.module').then(module => module.ProductModule)
+  },
+  {path: '', component: LoginComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
